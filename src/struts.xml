@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.multipart.maxSize" value="1000000000"/>
+
+    <package name="default" namespace="/" extends="struts-default">
+        <default-action-ref name="index"/>
+        <global-results>
+            <result name="error">/WEB-INF/jsp/error.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+
+    </package>
+
+    <package name="expressway-parent" extends="json-default">
+        <interceptors>
+            <interceptor name="authenticationInterceptor"
+                         class="com.stardust.express.interceptors.AuthenticationInterceptor"/>
+        </interceptors>
+    </package>
+
+    <package name="expressway-debug" extends="expressway-parent">
+        <action name="loadUser" class="com.stardust.express.actions.UserAction" method="loadUser">
+            <result name="success" type="json"></result>
+            <result name="permission_denied" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">stringResponse</param>
+            </result>
+        </action>
+        <action name="history2" class="com.stardust.express.actions.UserAction" method="loadHistory">
+            <result name="success" type="json"></result>
+        </action>
+    </package>
+
+    <package name="expressway-logon" extends="struts-default">
+        <action name="logon" class="com.stardust.express.actions.LogonAction" method="logon">
+            <result name="success" type="redirect">index.jsp</result>
+            <result name="incorrect_user" type="redirect">logon.jsp?error=incorrect_user</result>
+            <result name="invalid_user_status" type="redirect">logon.jsp?error=invalid_user_status</result>
+            <result name="invalid_user_group" type="redirect">logon.jsp?error=invalid_user_group</result>
+            <result name="system_experied" type="redirect">logon.jsp?error=system_experied</result>
+        </action>
+        <action name="logoff" class="com.stardust.express.actions.LogonAction" method="logoff">
+            <result name="success" type="redirect">logon.jsp</result>
+        </action>
+    </package>
+
+    <package name="expressway-controllers" extends="expressway-parent">
+        <action name="lookup" class="com.stardust.express.actions.LookupAction" method="fetch">
+            <result name="success" type="json"></result>
+        </action>
+        <action name="readrecord" class="com.stardust.express.actions.MaintenanceAction" method="read">
+            <result name="success" type="json"></result>
+        </action>
+        <action name="updaterecord" class="com.stardust.express.actions.MaintenanceAction" method="update">
+            <result name="success" type="json"></result>
+        </action>
+        <action name="deleterecord" class="com.stardust.express.actions.MaintenanceAction" method="delete">
+            <result name="success" type="json"></result>
+        </action>
+        <action name="archive" class="com.stardust.express.actions.DBArchiveAction" method="archive">
+            <result name="success" type="json"></result>
+        </action>
+        <action name="history" class="com.stardust.express.actions.HistoryAction" method="fetch">
+            <result name="success" type="json"></result>
+        </action>
+        <action name="cleanUp" class="com.stardust.express.actions.HistoryAction" method="clean">
+            <result name="success" type="json"></result>
+        </action>
+        <action name="summaryReport" class="com.stardust.express.actions.SummaryReportAction" method="fetch">
+            <result name="success" type="json"></result>
+        </action>
+        <action name="uploadsnap" class="com.stardust.express.actions.UploadAction" method="upload">
+            <result name="success" type="json"></result>
+        </action>
+        <action name="saveHistory" class="com.stardust.express.actions.SaveHistoryAction" method="save">
+            <result name="success" type="json"></result>
+        </action>
+        <action name="ChartExpress" class="com.stardust.express.actions.ChartAction" method="chartIM">
+            <result name="success" type="json"></result>
+        </action>
+    </package>
+
+    <package name="web-interface" extends="json-default" namespace="/web-interface">
+        <action name="operatorlogon" class="com.stardust.express.webInterfaces.UserAction" method="operatorLogon">
+            <result type="json">
+                <param name="root">responseData</param>
+            </result>
+        </action>
+
+        <action name="leaderlogon" class="com.stardust.express.webInterfaces.UserAction" method="leaderLogon">
+            <result type="json">
+                <param name="root">responseData</param>
+            </result>
+        </action>
+
+        <action name="archive" class="com.stardust.express.webInterfaces.HistoryAction" method="archive">
+            <result type="json">
+                <param name="root">responseData</param>
+            </result>
+        </action>
+
+        <action name="">
+    </package>
+</struts>

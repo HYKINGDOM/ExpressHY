@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.stardust.express.models.HistoryRecord" table="EXPRESSWAY_GATEWAY_HISTORY">
+  	 <id name="id" column="ID" type="long">
+        <generator class="native"/>  
+     </id>
+     <property name="vehicleNumber" column="VEHICLE_NUMBER" type="string"/>   
+     <property name="entranceGateway" column="ENTRANCE_GATEWAY_NAME" type="string"/>
+     <property name="exitGateway" column="EXIT_GATEWAY_NAME" type="string"/>
+     <property name="date" column="REOCRD_DATE" type="timestamp"/>
+     <property name="amount" column="AMOUNT" type="double"/>
+     <property name="adjustAmount" column="ADJUST_AMOUNT" type="double"/>
+     <property name="isAffectation" column="IS_AFFECTATION" type="boolean"/>
+     <property name="comment" column="COMMENT" type="string"/>
+     <property name="merchandiseType" column="MERCHANDISE_TYPE" type="string"/>
+     <property name="vehicleType" column="VEHICLE_TYPE" type="string"/>
+     <property name="channel" column="CHANNEL_NUMBER" type="string"/>
+     <property name="channelType" column="CHANNEL_TYPE" type="string"/>
+     <property name="snapshoot1" column="SNAPSHOOT_1" type="string"/>
+     <property name="snapshoot2" column="SNAPSHOOT_2" type="string"/>
+     <property name="snapshoot3" column="SNAPSHOOT_3" type="string"/>
+     <property name="snapshoot4" column="SNAPSHOOT_4" type="string"/>
+     <property name="video" column="VIDEO" type="string"/>
+     <property name="tollCollector" column="TOLL_COLLECTOR" type="string"/>
+     <property name="year" column="YEAR" type="string"/>
+     <property name="month" column="MONTH" type="string"/>
+     <property name="day" column="DAY" type="string"/>
+     <many-to-one name="operator" column="OPERATOR_USER_ID" class="com.stardust.express.models.User" fetch="select"/>
+     <many-to-one name="leader" column="REVIEWER_USER_ID" class="com.stardust.express.models.User" fetch="select"/>
+     <property name="affectationDesc" column="AFFECTATION_DESC" type="integer"/>
+  </class>
+</hibernate-mapping>

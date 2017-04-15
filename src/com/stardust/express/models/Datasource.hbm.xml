@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.stardust.express.models.Datasource" table="EXPRESSWAY_DATASOURCE">
+  	 <id name="id" column="ID" type="long">
+        <generator class="native"/>  
+     </id>
+     <property name="datasourceName" column="SOURCE_NAME" type="string"/>   
+     <property name="databaseName" column="DATABASE_NAME" type="string"/>
+  </class>
+</hibernate-mapping>

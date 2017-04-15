@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.stardust.express.models.ChartExpress" table="EXPRESSWAY_GATEWAY_HISTORY">
+        <id name="id" column="ID" type="long">
+            <generator class="native"/>
+        </id>
+
+        <property name="date" column="REOCRD_DATE" type="timestamp"/>
+        <property name="merchandiseType" column="MERCHANDISE_TYPE" type="string"/>
+        <property name="year" column="YEAR" type="string"/>
+        <property name="month" column="MONTH" type="string"/>
+        <property name="day" column="DAY" type="string"/>
+        <property name="vehicleType" column="VEHICLE_TYPE" type="java.lang.String"/>
+
+    </class>
+</hibernate-mapping>

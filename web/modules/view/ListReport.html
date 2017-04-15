@@ -1,0 +1,35 @@
+﻿<div style="padding:10px 20px 20px 20px;width:420px;height:90px;">
+    <table cellpadding="5">
+    	<tr>
+    		<td>日期</td>
+    		<td><input data-index="theDate" class="easyui-datebox" style="width:140px" editable="false" data-options="sharedCalendar:'#ccc'"></td>
+    		<td>班次</td>
+    		<td>
+    			<select class="easyui-combobox" style="height:20px;width:80px;" data-options="editable:false,required:true" data-index="grp" data-field="grp" data-property="grp" >
+                		 <option value="早班">早班</option>
+                		 <option value="晚班">晚班</option>
+            	</select>
+            </td>
+    	</tr>
+        <tr>
+        	<td style="width:60px;">
+        		时间&nbsp;从: 
+        	</td>
+            <td>
+				<input data-index="startDate" class="easyui-datetimebox" style="width:140px" editable="false" data-options="disabled:true">
+			</td>
+			<td>
+			&nbsp;到:
+			</td>
+			<td>
+			 <input data-index="endDate" class="easyui-datetimebox" style="width:140px" editable="false" data-options="disabled:true">
+			</td>
+        </tr>
+    </table>
+    <div id="ccc" class="easyui-calendar"></div>
+</div>
+<div style="text-align:center;padding-bottom:20px;">
+    <a href="javascript:void(0)" data-index="run" iconCls="icon-ok" class="easyui-linkbutton" style="width:100px;">运行</a>
+    <a href="javascript:void(0)" data-index="cancel" iconCls="icon-undo" class="easyui-linkbutton" style="width:100px;">取消</a>
+</div>
+<script language="javascript" src="modules/controller/ListReport.js" type="text/javascript" ></script>

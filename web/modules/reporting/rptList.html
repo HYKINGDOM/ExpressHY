@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>车辆登记表</title>
+
+<link href="../../includes/easyui/themes/default/easyui.css" rel="stylesheet"   type="text/css"/>
+<link href="../../includes/easyui/themes/icon.css" rel="stylesheet"   type="text/css"/>
+<link href="../../includes/easyui/themes/color.css" rel="stylesheet"   type="text/css"/>
+<script language="javascript" src="../../includes/easyui/jquery.min.js" type="text/javascript" ></script>
+<script language="javascript" src="../../includes/easyui/jquery.easyui.min.js" type="text/javascript"  charset="gbk"></script>
+<script language="javascript" src="../../includes/app/util/lib.js" type="text/javascript" ></script>
+<style type="text/css">
+	    .datagrid-body 
+        {
+            overflow:visible !important;
+        }
+        .datagrid-cell-c1-comment {
+        	 overflow:visible !important;
+        	 white-space:normal;!important;
+        	 word-break:break-all; !important;
+　　			 word-wrap:break-word;!important;
+        }
+</style>
+</head>
+<body style="background-color:rgb(247,247,247)">
+	<script>
+	$(document).ready(function () {
+		var grid = $("#grid2");
+
+		grid.datagrid({
+            url: "history",
+            singleSelect: true,
+            nowrap: false,
+            autoRowHeight: true,
+            onBeforeLoad: function(params){
+                params.startDate = getUrlParam("startDate") != "" ? getUrlParam("startDate").replace('+', ' ') : "";
+                params.endDate = getUrlParam("endDate") !="" ? getUrlParam("endDate").replace('+', ' ') : "";
+            },
+            onLoadSuccess: function(data){
+            	var container = $('.datagrid-body')[1] ? $('.datagrid-body')[1] : $('.datagrid-body')[0];
+            	var scrollHeight = container.scrollHeight;
+            	container = $(container);
+            	var height = (container.height()) + scrollHeight;
+            	if (height < 400) height = 400;
+            	$('.datagrid-body').css("height", height);
+            	grid.datagrid("resize",{height: height});
+            }
+    	});
+		
+	});
+	function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); 
+        var r = window.location.search.substr(1).match(reg);  
+        if (r != null) return unescape(r[2]); return "";
+    }
+	</script>
+<div style="width:100%;" align="center">
+		<div>
+		<image width="1200" height="170" src="../../resource/images/list-rpt-header.png"/>
+	</div>
+	 <table id='grid2' title="" style="width:1200px;height:100%;overflow:visible;" remoteSort='true' loadMsg='处理中,请等待...'
+            data-options="">
+        <thead>
+            <tr>
+                <!-- <th data-options="field:'id',width:30" rowspan="2">ID</th> -->
+                <th data-options="field:'date',width:100,formatter:ExpressIM.UIComponent.DataGridFormater.DateTime" rowspan="2">时间</th>
+                <th data-options="field:'vehicleNumber',width:110" rowspan="2">车牌号</th>
+                <th data-options="field:'entranceGateway',width:80" rowspan="2">入站名称</th>
+                <th colspan="6">出口通行信息</th>
+                <th colspan="3">检验人信息</th>
+                <th data-options="field:'comment',width:200,formatter:ExpressIM.UIComponent.DataGridFormater.CommentFull" rowspan="2">备注</th>
+            </tr>
+            <tr>
+                <th data-options="field:'vehicleType',width:50">车轴数</th>
+                <th data-options="field:'channel',width:50">车道</th>
+                <th data-options="field:'tollCollector',width:80">收费员工号</th>
+                <th data-options="field:'channelType',width:60">放行方式</th>
+                <th data-options="field:'amount',width:80,align:'right',formatter:ExpressIM.UIComponent.DataGridFormater.HistoryAmount">免(缴)金额(元)</th>
+                <th data-options="field:'merchandiseType',width:100">货物名称</th>
+                <th data-options="field:'operator',width:100,formatter:ExpressIM.UIComponent.DataGridFormater.Opeartor">操作人</th>
+                <th data-options="field:'leader',width:100,formatter:ExpressIM.UIComponent.DataGridFormater.Leader">审核人</th>
+                <th data-options="field:'supervisor',width:120,formatter:ExpressIM.UIComponent.DataGridFormater.stationOwner">站长</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+</body>
+</html>

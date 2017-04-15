@@ -1,0 +1,46 @@
+﻿<div style="padding:10px 20px 20px 20px;width:420px;height:150px;">
+	<div>
+		<span style="color:red;">统计操作当数据量较大时,建议时间范围不要选择的过大(建议一个月)</span>
+	</div>
+	<div>
+		<span style="color:red;">注意:不选择区间范围表示统计所有数据,将会十分缓慢</span>
+	</div>
+    <table cellpadding="5">
+        <tr>
+        	<td style="width:60px;">
+        		时间&nbsp;从: 
+        	</td>
+            <td>
+				<input data-index="startDate" class="easyui-datebox" style="width:140px" editable="false" data-options="sharedCalendar:'#cc2'">
+			</td>
+			<td>
+			&nbsp;到:
+			</td>
+			<td>
+			 <input data-index="endDate" class="easyui-datebox" style="width:140px" editable="false" data-options="sharedCalendar:'#cc2'">
+			</td>
+        </tr>
+        <tr>
+        	<td colspan="2">
+        		月出口总流量(辆)
+        	</td>
+            <td  colspan="2">
+				<input data-index="vCount" class="easyui-numberbox" style="width:140px">
+			</td>
+        </tr>
+        <tr>
+        	<td  colspan="2">
+			      月拆分前应收总金额(元)
+			</td>
+			<td  colspan="2">
+			 	<input data-index="vAmount" class="easyui-numberbox" style="width:140px" min="0" max="99999" precision="2" >
+			</td>
+        </tr>
+    </table>
+    <div id="cc2" class="easyui-calendar"></div>
+</div>
+<div style="text-align:center;padding-bottom:20px;">
+    <a href="javascript:void(0)" data-index="run" iconCls="icon-ok" class="easyui-linkbutton" style="width:100px;">运行</a>
+    <a href="javascript:void(0)" data-index="cancel" iconCls="icon-undo" class="easyui-linkbutton" style="width:100px;">取消</a>
+</div>
+<script language="javascript" src="modules/controller/SummaryReport.js" type="text/javascript" ></script>

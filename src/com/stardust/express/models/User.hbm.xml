@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.stardust.express.models.User" table="EXPRESSWAY_USER" lazy="false">
+  	 <id name="id" column="ID" type="long">
+        <generator class="native"/>  
+     </id>
+     <property name="username" column="USER_NAME" type="string"/>   
+     <property name="name" column="NAME" type="string"/>
+     <property name="password" column="PASSWORD" type="string"/>
+     <property name="email" column="EMAIL" type="string"/>
+     <property name="status" column="STATUS" type="string"/>
+     <property name="roleId" column="USER_ROLE_ID" type="long"/>
+     <property name="type" column="USER_TYPE" type="string"/>
+  </class>
+</hibernate-mapping>
